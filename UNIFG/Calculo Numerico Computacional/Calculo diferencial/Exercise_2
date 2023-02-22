@@ -1,0 +1,19 @@
+import numpy as np
+import matplotlib.pyplot as plt
+from math import pow
+
+# dx is the "step" between each x value
+dx = 0.05
+def f(x):
+  # to calculate the y values of the function
+ return pow(x, 2) + 3
+# x values
+f_array_x = [x for x in np.arange(0,4,dx)]
+# y values
+f_array_y = [f(x) for x in np.arange(0,4,dx)]
+
+f_array_deriv = np.gradient(f_array_y, dx)
+
+plt.plot(f_array_x, f_array_y)
+plt.plot(f_array_x, f_array_deriv)
+plt.show()

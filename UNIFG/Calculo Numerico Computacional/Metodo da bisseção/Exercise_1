@@ -1,0 +1,43 @@
+import numpy as np
+
+def bissect(f, a, b, tol=1e-6, maxiter=100):
+    """
+    Encontra uma raiz da função f no intervalo [a, b] utilizando o método da bissecção.
+    """
+    if f(a) * f(b) >= 0:
+        raise ValueError("A função deve ter sinais opostos em a e b.")
+    
+    for i in range(maxiter):
+        # Divide o intervalo ao meio
+        c = (a + b) / 2
+        
+        # Verifica se c é uma raiz
+        if abs(f(c)) < tol:
+            return c
+        
+        # Decide em qual subintervalo continuar a busca
+        if f(c) * f(a) < 0:
+            b = c
+        else:
+            a = c
+    
+    raise ValueError(f"O método não convergiu em {maxiter} iterações.")
+
+# Define a função
+f = lambda x: 9*x**3 + 3*x**2 - 800
+
+# Define o intervalo de interesse
+a, b = 4, 5
+
+# Encontra as raízes
+x = np.linspace(a, b, 1000)
+y = f(x)
+zeros = []
+for i in range(len(x)-1):
+    if f(x[i]) * f(x[i+1]) <= 0:
+        solucao = bissect(f, x[i], x[i+1])
+        zeros.append(solucao)
+
+# Imprime as raízes encontradas
+for i, raiz in enumerate(zeros):
+    print(f"A raiz {i} é {raiz}")

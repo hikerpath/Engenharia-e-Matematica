@@ -1,0 +1,51 @@
+#Python program to test whether numpy and matplotlib have been installed correctly.
+
+
+import numpy as np
+import matplotlib.pyplot as plt
+
+
+
+
+a = 0
+b = 20
+N = 100
+x = np.linspace(a,b,N)
+y = 6+(((x/3600)/0.001416)**2)/(2*9.81)
+print(x[range(0,N,10)])
+# If there is a problem: use print(x[list(range(0,N,10))]) instead.
+
+
+plt.figure(1)
+
+#Cor da curva e texto (Legenda)
+plt.plot(x,y,color = "violet", label = "$v(Q)=Q/A$")
+
+ # plt.plot(2*x,-y,color = "red", label = "$g(x)=-x/2$")
+
+#Limite inicial do grafico
+plt.xlim([-1,1])
+
+#Proporção
+plt.axis("equal")
+
+#Titulo do eixo y
+plt.ylabel("Velocidade (m/s)")
+
+#Titulo do eixo x
+plt.xlabel("Vazão (m³/h)")
+
+#Titulo do grafico
+plt.title("Velocidade em função da vazão")
+
+#Grade do grafico
+plt.grid(True)
+
+#Posição da legenda
+plt.legend(loc = "upper right", shadow = True)
+
+#Nota à direita, mais abaixo do grafico
+plt.annotate('vazão do projeto', xy=(15, 3), xytext=(16, 2))
+
+#Plotar  gráfico
+plt.show()
